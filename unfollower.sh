@@ -16,16 +16,14 @@ ig_sig="4f8732eb9ba7d1c8e8897a75d6474d4eb3f5279137431b2aafb71fafe2abe178"
 
 banner() {
 clear
-printf " \e[0m\n"
-printf " \e[1;93m _   _        __      _ _                        \e[0m\n"
-printf " \e[1;93m| | | |      / _|    | | |                \e[1;92m   _   \e[0m\n"
-printf " \e[1;93m| | | |_ __ | |_ ___ | | | _____      __  \e[1;92m _| |_ \e[0m\n"
-printf " \e[1;93m| | | | '_ \|  _/ _ \| | |/ _ \ \ /\ / /  \e[1;92m|_   _|\e[0m\n"
-printf " \e[1;93m| |_| | | | | || (_) | | | (_) \ V  V /   \e[1;92m  |_|  \e[0m\n"
-printf " \e[1;93m \___/|_| |_|_| \___/|_|_|\___/ \_/\_/           \e[0m\n"
-printf " \e[0m\n"
-printf " \e[1;96m [\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;92m Created By HTR-TECH (Tahmid Rayat)\e[0m\n"
-printf " \e[0m\n"
+____________                                     < @bozkurt20 >                                     ------------                                         \                                                  \                                                                               .::!!!!!!!:.
+  .!!!!!:.                        .:!!!!!!!!!!!!    ~~~~!!!!!!.                 .:!!!!!!!!!UWWW$$$
+      :$$NWX!!:           .:!!!!!!XUWW$$$$$$$$$P        $$$$$##WX!:      .<!!!!UW$$$$"  $$$$$$$$#
+      $$$$$  $$$UX   :!!UW$$$$$$$$$   4$$$$$*           ^$$$B  $$$$\     $$$$$$$$$$$$   d$$R"
+        "*$bd$$$$      '*$$$$$$$$$$$o+#"                       """"          """""""
+   _____ _______                                    / ____|__   __|
+ | |       | |                                     | |       | |
+ | |____   | |                                      \_____|  |_|
 
 }
 
@@ -35,26 +33,26 @@ user_login() {
 
 
 if [[ $user == "" ]]; then
-printf " \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;96m Instagram Login\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;96m Instagram Giriş\e[0m\n"
 printf "\n"
-read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Input Username\e[1;96m : \e[0m\e[1;92m' user
+read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Kullanıcı Adını Girin\e[1;96m : \e[0m\e[1;92m' user
 fi
 
 if [[ -e .cookie.$user ]]; then
 
 printf "\n"
-printf " \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Login Creds Found for \e[0m\e[1;92m %s\e[0m\n" $user
+printf " \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Oturum Açma Kimlik Bilgileri Bulundu \e[0m\e[1;92m %s\e[0m\n" $user
 
 default_use_cookie="Y"
 
 printf "\n"
-read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Use Previous Creds ?\e[0m\e[1;96m [Y/n] : \e[0m\e[1;92m ' use_cookie
+read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m  Önceki Kredileri Kullan?(Y) \e[0m\e[1;96m [Y/n] : \e[0m\e[1;92m ' use_cookie
 
 use_cookie="${use_cookie:-${default_use_cookie}}"
 
 if [[ $use_cookie == *'Y'* || $use_cookie == *'y'* ]]; then
 printf "\n"
-printf " \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Logging in using Previous Creds...\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Önceki Kimlik Bilgilerini kullanarak oturum açma...\e[0m\n"
 else
 rm -rf .cookie.$user
 user_login
@@ -64,7 +62,7 @@ fi
 else
 
 printf "\n"
-read -s -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Input Password\e[1;96m : \e[0m' pass
+read -s -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;93m Giriş şifresi\e[1;96m : \e[0m' pass
 printf "\n"
 data='{"phone_id":"'$phone'", "_csrftoken":"'$var2'", "username":"'$user'", "guid":"'$guid'", "device_id":"'$device'", "password":"'$pass'", "login_attempt_count":"0"}'
 
@@ -169,10 +167,10 @@ printf "\n"
 check_unfollow=$(curl -s -L -b .cookie.$user -d "ig_sig_key_version=4&signed_body=$hmac.$data" -s --user-agent 'User-Agent: "Instagram 10.26.0 Android (18/4.3; 320dpi; 720x1280; Xiaomi; HM 1SW; armani; qcom; en_US)"' -w "\n%{http_code}\n" -H "$header" "https://i.instagram.com/api/v1/friendships/destroy/$user_id/" | grep -o '"following": false' ) 
 
 if [[ $check_unfollow == "" ]]; then
-printf " \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\e[1;93m Error, Try after Few Minutes \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\e[1;93m Hata, Birkaç Dakika Sonra Deneyin \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\n"
 exit 1
 else
-printf " \e[1;92m    [✔] Unfollowed [✔]\n"
+printf " \e[1;92m    [✔] Takip edilmedi [✔]\n"
 printf "\n"
 fi
 
@@ -187,15 +185,15 @@ done
 menu() {
 
 printf "\n"
-printf " \e[1;96m[\e[0m\e[1;97m01\e[0m\e[1;96m]\e[0m\e[1;93m Get Following List\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;97m01\e[0m\e[1;96m]\e[0m\e[1;93m Takip Listesini Al\e[0m\n"
 printf "\n"
-printf " \e[1;96m[\e[0m\e[1;97m02\e[0m\e[1;96m]\e[0m\e[1;93m Activate Unfollower\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;97m02\e[0m\e[1;96m]\e[0m\e[1;93m Takibi Bırakmayı Etkinleştir\e[0m\n"
 printf "\n"
-printf " \e[1;96m[\e[0m\e[1;97m03\e[0m\e[1;96m]\e[0m\e[1;93m More Tools from Us\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;97m03\e[0m\e[1;96m]\e[0m\e[1;93m Bizden Daha Fazla Araç\e[0m\n"
 printf "\n"
 
 
-read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;96m Choose an Option\e[1;96m : \e[0m\e[1;92m' option
+read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;96m Bir Seçenek Belirleyin\e[1;96m : \e[0m\e[1;92m' option
 printf "\n"
 
 
@@ -206,7 +204,7 @@ default_user=$user
 
  
 printf "\n"
-read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;96m Account \e[0m\e[1;93m(Leave blank for Current acc): \e[0m\e[1;92m' user_account
+read -p $' \e[1;96m[\e[0m\e[1;97m+\e[0m\e[1;96m]\e[0m\e[1;96m hesap \e[0m\e[1;93m(Leave blank for Current acc): \e[0m\e[1;92m' user_account
 
 user_account="${user_account:-${default_user}}"
 following_info
@@ -223,7 +221,7 @@ exit 1
 else
 
 printf "\n"
-printf " \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\e[1;93m Invalid Option \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\n"
+printf " \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\e[1;93m Geçersiz Seçenek \e[1;96m[\e[0m\e[1;91m!\e[0m\e[1;96m]\e[0m\n"
 sleep 2
 menu
 
